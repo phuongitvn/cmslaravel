@@ -1,108 +1,84 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light-style layout-navbar-fixed layout-compact layout-menu-fixed">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/admin/app.css', 'resources/js/admin/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="bg-base-100 drawer lg:drawer-open">
-            <input id="drawer" type="checkbox" class="drawer-toggle">
-            <div class="drawer-content flex flex-col">
-                <!-- Page Heading -->
-                <div class="navbar flex justify-between bg-base-100 z-10 shadow-md">
-                    <div class="">
-                        <label for="drawer" class="btn btn-primary drawer-button lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 inline-block w-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                            </svg>
-                        </label>
-                        <h1 class="text-2xl font-semibold ml-2">{{ $header }}</h1>
-                    </div>
-                    <div class="order-last">
-                        <label class="swap">
-                            <input class="hidden" id="theme-change" type="checkbox" />
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                                data-set-theme="light"
-                                data-act-class="ACTIVECLASS"
-                                class="fill-current w-6 h-6 swap-off ACTIVECLASS"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                ></path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor"
-                                aria-hidden="true"
-                                data-set-theme="dark"
-                                data-act-class="ACTIVECLASS"
-                                class="fill-current w-6 h-6 swap-on">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-                                ></path>
-                            </svg>
-                        </label>
-                        <div class="dropdown dropdown-end ml-4">
-                            <label tabindex="0" class="btn btn-ghost">
-                                <div>{{ Auth::user()->name }}</div>
-                                <div class="ml-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </label>
-                            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                                <li class="justify-between">
-                                    <a href="{{ route('profile.edit') }}">
-                                        {{ __('Profile') }}
-                                    </a>
-                                </li>
-                                <div class="divider mt-0 mb-0"></div>
-                                <li>
-                                    <!-- Authentication -->
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
+    <!-- Fonts -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/fonts/fontawesome.css" />
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/themes/admin/assets/css/demo.css" />
 
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                            {{ __('Log Out') }}
-                                        </a>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Page Content -->
-                <main class="flex-1 overflow-y-auto pt-8 px-6 bg-base-200">
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/libs/datatables/datatables.bootstrap5.css" />
+
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="/themes/admin/assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/themes/admin/assets/js/config.js"></script>
+
+</head>
+
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            @include('admin.layouts.navigation')
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                @include('admin.layouts.user_navigation')
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
                     {{ $slot }}
-                </main>
-            </div>
-            <div class="drawer-side z-40">
-                <label for="drawer" class="drawer-overlay" aria-label="Close menu"></label>
-                @include('admin.layouts.navigation')
+                </div>
             </div>
         </div>
-    </body>
+
+        @stack('after-scripts')
+        <!-- Core JS -->
+        <!-- build:js assets/vendor/js/core.js -->
+        <script src="/themes/admin/assets/vendor/libs/jquery/jquery.js"></script>
+        <script src="/themes/admin/assets/vendor/libs/popper/popper.js"></script>
+        <script src="/themes/admin/assets/vendor/js/bootstrap.js"></script>
+        <script src="/themes/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+        <script src="/themes/admin/assets/vendor/js/menu.js"></script>
+        <!-- endbuild -->
+
+        <!-- Vendors JS -->
+        <script src="/themes/admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+        <script src="/themes/admin/assets/vendor/libs/select2/select2.js"></script>
+        <!-- Main JS -->
+        <script src="/themes/admin/assets/js/main.js"></script>
+
+        <!-- Page JS -->
+        <script src="/themes/admin/assets/js/dashboards-analytics.js"></script>
+
+        <!-- Place this tag in your head or just before your close body tag. -->
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
 </html>

@@ -1,30 +1,50 @@
 @isset($menus)
-<ul class="menu pt-2 w-80 bg-base-100 text-base-content min-h-full">
-    <label for="drawer" class="btn btn-ghost bg-base-300 btn-circle z-50 top-0 right-0 mt-2 mr-2 absolute lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 inline-block w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
-    </label>
-    <li class="mb-2 font-semibold text-xl">
-        <a href="{{ route('admin.dashboard') }}">
-            <x-application-logo class="block h-9 w-auto fill-current" />Admin Panel
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a href="/admin" class="app-brand-link">
+            <x-application-logo class="block h-9 w-auto fill-current" />
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
         </a>
-    </li>
-    @foreach($menus as $menu)
-    <li>
-        <a href="{{ $menu['link'] }}" class="{{ (request()->is(ltrim($menu['link'], '/'))) ? 'active' : '' }}">
-            @if($menu['icon'])
-            <x-admin.base-icon path="{{$menu['icon']}}" />
-            @endif
-            {{ $menu['name'] }}
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
-        @isset($menu['children'])
-        <ul class="bg-base-100 p-2">
-            @foreach($menu['children'] as $child)
-            <li><a href="{{ $child['link'] }}" class="{{ (request()->is(ltrim($child['link'], '/'))) ? 'active' : '' }}">{{ $child['name'] }}</a></li>
-            @endforeach
-        </ul>
-        @endisset
-    </li>
-    @endforeach
-</ul>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <!-- Dashboard -->
+        @foreach($menus as $menu)
+        @php
+        
+        $subMenus = [];
+        $hasSubActive = false;
+        foreach($menu['children'] as $child) {
+            $isActive = (request()->is(ltrim($child['link'], '/'))) || (request()->is(ltrim($child['link'], '/').'/*')) ? 'active' : '';
+            if($isActive == 'active') {
+                $hasSubActive = true;
+            }
+            $subMenus[] = '<li class="menu-item '.$isActive.'"><a href="'.$child['link'].'" class="menu-link">'.$child['name'].'</a></li>';
+        }
+
+        @endphp
+        <li class="menu-item {{ $hasSubActive ? 'open active' : ''}} {{ (request()->is(ltrim($menu['link'], '/'))) || (request()->is(ltrim($menu['link'], '/').'/*')) ? 'active' : '' }}">
+            <a href="{{ $menu['link'] }}" class="menu-link {{ count($menu['children']) > 0 ? 'menu-toggle' : '' }}">
+                @if($menu['icon'])
+                <i class="{{$menu['icon']}}"></i>
+                @endif
+                <div data-i18n="{{ $menu['name'] }}">{{ $menu['name'] }}</div>
+            </a>
+            @isset($menu['children'])
+            <ul class="menu-sub">
+                @foreach($menu['children'] as $child)
+                <li class="menu-item {{ (request()->is(ltrim($child['link'], '/'))) || (request()->is(ltrim($child['link'], '/').'/*')) ? 'active' : '' }}"><a href="{{ $child['link'] }}" class="menu-link">{{ $child['name'] }}</a></li>
+                @endforeach
+            </ul>
+            @endisset
+        </li>
+        @endforeach
+    </ul>
+</aside>
 @endisset
-    

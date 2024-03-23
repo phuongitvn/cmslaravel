@@ -1,2 +1,6 @@
-<h1 class="inline-block text-2xl sm:text-3xl font-extrabold tracking-tight py-4 block sm:inline-block flex">{{ $title }}</h1>
-<a href="{{ $href }}" class="no-underline hover:underline text-cyan-600">{{ $slot }}</a>
+<div class="d-flex flex-wrap justify-content-between mb-4">
+    <h4 class="justify-content-md-start py-3 m-0">{{ $title }}</h4>
+    <div class="d-flex justify-content-md-end align-items-center gap-3 flex-wrap">
+        <a href="{{ $href }}" class="btn btn-label-secondary">{{ $slot }}</a>
+    </div>
+</div>

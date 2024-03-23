@@ -6,8 +6,8 @@
     <div class="d-print-none with-border">
         <x-admin.breadcrumb href="{{route('admin.menu.index')}}" title="{{ __('Menu Items') }}">{{ __('<< Back to all menus') }}</x-admin.breadcrumb> 
     </div>
-    <div class="w-full py-2">
-        <div class="min-w-full border-base-200 shadow">
+    <div class="card mb-4">
+        <div class="card-body">
             <table class="table">
                 <tbody>
                     <tr>
@@ -22,14 +22,16 @@
             </table>
         </div>
     </div>
-
+    <div class="card">
     @can('menu create')
+    <div class="card-header">
     <x-admin.add-link href="{{ route('admin.menu.item.create', $menu->id) }}">
         {{ __('Add Menu Item') }}
     </x-admin.add-link>
+    </div>
     @endcan
     
-    <div class="py-2">
+    <div class="table-responsive">
         <div class="min-w-full  border-base-200 shadow overflow-x-auto">
             <x-admin.grid.table>
                 <x-slot name="head">
@@ -63,5 +65,6 @@
                 </x-slot>
             </x-admin.grid.table>
         </div>
+    </div>
     </div>
 </x-admin.wrapper>

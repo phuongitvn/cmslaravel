@@ -1,3 +1,15 @@
-<th {{ $attributes->merge(['class' => 'py-2 px-4 bg-base-50 font-bold uppercase text-sm text-left']) }}>
+@php
+$isSort = $attributes->get('is_sort');
+$attribute = $attr ?? '';
+$sortType = '';
+if($isSort && request()->query('sort') == $attribute) {
+    $sortType = 'sorting_asc';
+}
+if($isSort && request()->query('sort') == '-'.$attribute) {
+    $sortType = 'sorting_desc';
+}
+$sortClass = $isSort == true ? "sorting" : "";
+@endphp
+<th {{ $attributes->merge(['class' => $sortClass.' '.$sortType]) }}>
     {{ $slot }}
 </th>

@@ -7,8 +7,8 @@
         <x-admin.breadcrumb href="{{route('admin.permission.index')}}" title="{{ __('Create permission') }}">{{ __('<< Back to all permissions') }}</x-admin.breadcrumb>
         <x-admin.form.errors />
     </div>
-    <div class="w-full py-2 overflow-hidden">
-
+    <div class="card">
+        <div class="card-body">
         <form method="POST" action="{{ route('admin.permission.store') }}">
         @csrf
 
@@ -26,5 +26,6 @@
                 <x-admin.form.button>{{ __('Create') }}</x-admin.form.button>
             </div>
         </form>
+    </div>
     </div>
 </x-admin.wrapper>

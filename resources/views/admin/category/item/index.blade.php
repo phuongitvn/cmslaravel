@@ -6,8 +6,8 @@
     <div class="d-print-none with-border">
         <x-admin.breadcrumb href="{{route('admin.category.type.index')}}" title="{{ __('Categories') }}">{{ __('<< Back to all category types') }}</x-admin.breadcrumb> 
     </div>
-    <div class="w-full py-2">
-        <div class="min-w-full border-base-200 shadow">
+    <div class="card">
+        <div class="card-body">
             <table class="table">
                 <tbody>
                     <tr>
@@ -22,15 +22,15 @@
             </table>
         </div>
     </div>
-
+    <x-admin.action_buttons title="{{ __('Categories') }}" class="mt-4">
     @can('category create')
     <x-admin.add-link href="{{ route('admin.category.type.item.create', $type->id) }}">
         {{ __('Add Category') }}
     </x-admin.add-link>
     @endcan
+    </x-admin.action_buttons>
     
-    <div class="py-2">
-        <div class="min-w-full  border-base-200 shadow overflow-x-auto">
+    <div class="card">
             <x-admin.grid.table>
                 <x-slot name="head">
                     <tr class="bg-base-200">

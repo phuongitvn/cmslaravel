@@ -1,7 +1,8 @@
 @if(session()->has('message'))
-    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
-        <span class="font-medium">
-            {{ session()->get('message') }}
-        </span>
+<div class="alert alert-info d-flex" role="alert">
+    <span class="badge badge-center rounded-pill bg-info border-label-info p-3 me-2"><i class="bx bx-detail fs-6"></i></span>
+    <div class="d-flex flex-column ps-1">
+        <span>{{ session()->get('message') }}</span>
     </div>
+</div>
 @endif

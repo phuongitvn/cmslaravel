@@ -7,8 +7,8 @@
         <x-admin.breadcrumb href="{{route('admin.category.type.index')}}" title="{{ __('Update Category Type') }}">{{ __('<< Back to all Category Type') }}</x-admin.breadcrumb>
         <x-admin.form.errors />
     </div>
-    <div class="w-full py-2 overflow-hidden">
-
+    <div class="card">
+        <div class="card-body">
         <form method="POST" action="{{ route('admin.category.type.update', $type->id) }}">
         @csrf
         @method('PUT')
@@ -39,7 +39,7 @@
 
             <div class="p-2">
                 <label for="is_flat" class="inline-flex items-center">
-                    <input id="is_flat" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="is_flat" value="1" {{ old('is_flat', $type->is_flat) ? 'checked="checked"' : '' }}>
+                    <input id="is_flat" type="checkbox" class="form-check-input" name="is_flat" value="1" {{ old('is_flat', $type->is_flat) ? 'checked="checked"' : '' }}>
                     <span class="ml-2">{{ __('Use Flat Category') }}</span>
                 </label>
             </div>
@@ -48,5 +48,6 @@
                 <x-admin.form.button>{{ __('Update') }}</x-admin.form.button>
             </div>
         </form>
+    </div>
     </div>
 </x-admin.wrapper>

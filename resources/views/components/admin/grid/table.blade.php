@@ -1,4 +1,4 @@
-<table {{ $attributes->merge(['class' => 'table']) }}>
+<table {{ $attributes->merge(['class' => 'table border-top dataTable no-footer dtr-column']) }}>
     <thead>
         {{ $head }}
     </thead>
