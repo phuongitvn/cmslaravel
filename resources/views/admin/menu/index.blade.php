@@ -18,6 +18,9 @@
             <x-admin.grid.table>
                 <x-slot name="head">
                     <tr class="bg-base-200">
+                        <x-admin.grid.th>
+                        <input type="checkbox" class="form-check-input">
+                        </x-admin.grid.th>
                         <x-admin.grid.th is_sort="true" attr="name">
                             @include('admin.includes.sort-link', ['label' => 'Name', 'attribute' => 'name'])
                         </x-admin.grid.th>
@@ -38,6 +41,9 @@
                     @foreach($menus as $menu)
                     <tr>
                         <x-admin.grid.td>
+                            <input type="checkbox" class="form-check-input">
+                        </x-admin.grid.td>
+                        <x-admin.grid.td>
                             {{ $menu->name }}
                         </x-admin.grid.td>
                         <x-admin.grid.td>
@@ -51,13 +57,13 @@
                             <form action="{{ route('admin.menu.destroy', $menu->id) }}" method="POST">
                                 <div>
                                     @can('menu.item list')
-                                    <a href="{{route('admin.menu.item.index', $menu->id)}}" class="btn btn-sm btn-icon">
+                                    <a href="{{route('admin.menu.item.index', $menu->id)}}" class="btn btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ __('List this menu') }}">
                                         <i class="bx bx-menu"></i>
                                     </a>
                                     @endcan
 
                                     @can('menu edit')
-                                    <a href="{{route('admin.menu.edit', $menu->id)}}" class="btn btn-sm btn-icon">
+                                    <a href="{{route('admin.menu.edit', $menu->id)}}" class="btn btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ __('Edit this menu') }}">
                                         <i class="bx bx-edit"></i>
                                     </a>
                                     @endcan
@@ -65,7 +71,7 @@
                                     @can('menu delete')
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-icon delete-record" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">
+                                    <button class="btn btn-sm btn-icon delete-record" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="{{ __('Delete this menu') }}">
                                         <i class="bx bx-trash"></i>
                                     </button>
                                     @endcan

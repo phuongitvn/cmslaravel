@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="/themes/admin/assets/vendor/fonts/boxicons.css" />
-    <link rel="stylesheet" href="/themes/admin/assets/vendor/fonts/fontawesome.css" />
+    <!-- <link rel="stylesheet" href="/themes/admin/assets/vendor/fonts/fontawesome/css/fontawesome.min.css" /> -->
     <!-- Core CSS -->
     <link rel="stylesheet" href="/themes/admin/assets/css/demo.css" />
 
@@ -27,7 +27,8 @@
     <link rel="stylesheet" href="/themes/admin/assets/vendor/libs/datatables/datatables.bootstrap5.css" />
 
     <link rel="stylesheet" href="/themes/admin/assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="/themes/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <!-- <link rel="stylesheet" href="/themes/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" /> -->
+    <link rel="stylesheet" href="/themes/admin/assets/vendor/css/theme-bordered.css" class="template-customizer-theme-css" />
     <!-- Page CSS -->
     <!-- Helpers -->
     <script src="/themes/admin/assets/vendor/js/helpers.js"></script>
